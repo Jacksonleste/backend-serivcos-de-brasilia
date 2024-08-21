@@ -4,7 +4,8 @@ import { myDataSource } from "../app-data-source";
 
 myDataSource
 	.initialize()
-	.then(() => {
+	.then(async () => {
+		await myDataSource.queryResultCache?.clear;
 		console.log("Database connection successful");
 	})
 	.catch((error) => console.log(error));
