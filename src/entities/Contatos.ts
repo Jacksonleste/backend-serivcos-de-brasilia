@@ -1,4 +1,12 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToOne, OneToMany, Index } from "typeorm";
+import {
+	Entity,
+	PrimaryGeneratedColumn,
+	Column,
+	ManyToOne,
+	OneToMany,
+	Index,
+	JoinColumn,
+} from "typeorm";
 import { Especialidades } from "./Especialidades";
 
 @Entity()
@@ -7,23 +15,24 @@ export class Contatos {
 	id!: number;
 
 	@ManyToOne(() => Especialidades, (especialidades) => especialidades.id)
-	especialidades!: Especialidades;
+	@JoinColumn({ name: "especialidadeId" })
+	especialidade!: Especialidades;
 
 	@Column()
 	nome!: string;
 
 	@Column({ nullable: true })
-	telefone!: string;
+	telefone?: string;
 
 	@Column({ nullable: true })
 	telefone2!: string;
 
-	@Column({ name: "link_instagram", type: "varchar", length: 255, nullable: true })
+	@Column({ name: "instagram_username", type: "varchar", length: 255, nullable: true })
 	instagram!: string;
 
 	@Column({ nullable: true })
 	endereco!: string;
 
-    @Column({type: 'text', nullable: true })
-    observacoes!: string;
+	@Column({ type: "text", nullable: true })
+	observacoes!: string;
 }

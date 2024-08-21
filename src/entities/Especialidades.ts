@@ -10,6 +10,6 @@ export class Especialidades {
     @Column()
     nome!: string;
 
-    @OneToMany(()=> Contatos, (contato)=> contato.especialidades)
+    @OneToMany(()=> Contatos, (contato)=> contato.especialidade)
     contatos!: Contatos[];
 }
